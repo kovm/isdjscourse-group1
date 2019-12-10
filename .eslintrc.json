@@ -15,5 +15,7 @@
         "sourceType": "module"
     },
     "rules": {
+        "indent": ["error", 3],
+        "semi": ["error", "always"]
     }
 }
