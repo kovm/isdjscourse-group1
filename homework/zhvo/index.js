@@ -1,27 +1,29 @@
-// magic 8 ball
-let i = Math.floor(Math.random() * 6);
-let answer;
-switch(i){
-  case 0:
-    answer = 'Signs point to yes.';
-    break;
-  case 1:
-    answer = 'Most likely.';
-    break;
-  case 2:
-    answer = 'Definitely yes!';
-    break;
-  case 3:
-    answer = 'My reply is "No".';
-    break;
-  case 4:
-    answer = 'Reply hazy, try again.';
-    break;
-  case 5:
-    answer = 'Don’t count on it.';
-    break;
-  default:
-    answer = 'Outlook not so good.';
+// Fizz Buzz task
+for(let i = 1; i <= 100; i++){
+  if (i % 3 == 0 && i % 5 == 0)
+	console.log('FizzBuzz');
+  else if(i % 5 == 0)
+	console.log('Buzz');
+  else if(i % 3 == 0)
+	console.log('Fizz');
+  else console.log(i);
 };
-console.log(`The Ball says: ${answer}`);
 
+
+// Palindrome task
+let checkFunc = input => {
+let inpt = input.toString();
+  for(let i = 0; i < inpt.length; i++) {
+	for(let j = inpt.length - 1; j >= 0; j--) {
+  	if (inpt[i] === inpt[j]) {
+    	return true;
+  	} else return false;
+	}
+  }
+};
+
+// check for Palindrome task
+console.log(checkFunc('taco cat')); 	// true
+console.log(checkFunc('waterfall')); 	// false
+console.log(checkFunc(345543)); 	// true
+console.log(checkFunc(692344)); 	// false
