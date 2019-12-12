@@ -1,17 +1,16 @@
-function bubbleSortConcept1(arr) {
-
-    for (let j = arr.length - 1; j > 0; j--) {
-      for (let i = 0; i < j; i++) {
-        if (arr[i] > arr[i + 1]) {
-          let temp = arr[i];
-          arr[i] = arr[i + 1];
-          arr[i + 1] = temp;
-        }
+function isPolindrome (str) {
+   const someStr = str.toString();
+   let i = 0;
+   let j = someStr.length - 1;
+   let yesOrNo = true;
+   for (let l = 0; l <= someStr.length / 2; l++) {
+      if (someStr[i] !== someStr[j]) {
+         yesOrNo = false;
       }
-    }
-    return arr;
-  }
+      i++;
+      j--;
+   }
+   return yesOrNo;
+}
 
-  let unsortedArr = [5, 8, 3, 1, 2];
-
-console.log(bubbleSortConcept1(unsortedArr));
+console.log(isPolindrome('potop'));
