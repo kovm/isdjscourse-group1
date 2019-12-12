@@ -12,31 +12,30 @@ for (let i = 1; i <= 100; i++) {
 };
 
 // Palindrome task
-const checkFunc = input => {
+
+// Func 1. modifies the input, 2. calls check function 'checkFunc' or returns an error
+const isPalind = input => {
    if (typeof input === 'string' && input.length > 1) {
-      const inpt = input.replace(/ /g, '');
-      for (let i = 0; i < inpt.length; i++) {
-         for (let j = inpt.length - 1; j >= 0; j--) {
-            if (inpt[i] === inpt[j]) {
-               return true;
-            } else {
-               return false;
-            }
-         }
-      }
+      const inpt = input.replace(/\s/g, '');
+      return checkFunc(inpt);
    } else if (typeof input === 'number') {
       const inpt = input.toString();
-      for (let i = 0; i < inpt.length; i++) {
-         for (let j = inpt.length - 1; j >= 0; j--) {
-            if (inpt[i] === inpt[j] && inpt.length > 1) {
-               return true;
-            } else {
-               return false;
-            }
-         }
-      }
+      return checkFunc(inpt);
    } else {
-      return 'Please enter either a number or a string that contains not less than 2 characters.';
+      return 'Error! Please enter either a number or a string that contains not less than 2 characters.';
    }
 };
-console.log(checkFunc(' taco cat'));
+
+// Func checks if input is a palindrome
+const checkFunc = data => {
+   for (let i = 0; i < data.length; i++) {
+      for (let j = data.length - 1; j >= 0; j--) {
+         if (data[i] === data[j]) {
+            return true;
+         } else {
+            return false;
+         }
+      }
+   }
+};
+console.log(isPalind(' taco cat'));
