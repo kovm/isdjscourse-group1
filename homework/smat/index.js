@@ -25,12 +25,11 @@ const counterFB = (function () {
    return { logging: counterLog };
 })();
 counterFB.logging();
-const test = 'Was it a cat I saw?';
-const isPalindrome = (function () {
-   const regExp = /[^A-Za-zА-Яа-яЁёІіЇї0-9]/g;
-   const newtest = test.replace(regExp, '').toLowerCase();
-   const testLoop = Math.floor(newtest.length / 2);
-   function charTest () {
+function isPalindrome (test) {
+   if (typeof (test) === 'number' || typeof (test) === 'string') {
+      const regExp = /[^A-Za-zА-Яа-яЁёІіЇї0-9]/g;
+      const newtest = test.toString().replace(regExp, '').toLowerCase();
+      const testLoop = Math.floor(newtest.length / 2);
       for (let i = 1; i <= testLoop; i++) {
          if (newtest[i - 1] !== newtest[newtest.length - i]) {
             console.log(`${test} - isn't a palindrome`);
@@ -41,7 +40,8 @@ const isPalindrome = (function () {
             }
          }
       }
+   } else {
+      console.log('Incorrect data');
    }
-   return { isPalindrome: charTest };
-})();
-isPalindrome.isPalindrome();
+}
+isPalindrome('Eva, can I see bees in a cave?');
