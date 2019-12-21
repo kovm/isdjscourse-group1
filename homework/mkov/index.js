@@ -1,1 +1,1 @@
-console.log(`Hello`);
+exports.createSeaBattle = () => () => () => 0;
