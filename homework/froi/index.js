@@ -1,36 +1,36 @@
 function FizzBuzz () {
    const numbers = [];
-   for (let i = 1; i <= 100; i++) {
-      let n = i;
-      switch (true) {
-      case (n % 3 === 0 && n % 5 === 0):
-         n = 'FizzBuzz';
+   for (let n = 1; n <= 100; n++) {
+      switch (0) {
+      case (n % 3 || n % 5):
+         numbers.push('FizzBuzz');
          break;
-      case (n % 3 === 0):
-         n = 'Fizz';
+      case (n % 3):
+         numbers.push('Fizz');
          break;
-      case (n % 5 === 0):
-         n = 'Buzz';
+      case (n % 5):
+         numbers.push('Buzz');
          break;
       default:
+         numbers.push(n);
       }
-      numbers.push(n);
    }
    console.log(numbers.join(', '));
-   document.body.append(numbers.join(', '));
 }
 FizzBuzz();
 
 function isPolindrome (subject) {
-   if (typeof subject !== 'number' || typeof subject !== 'string' || subject === undefined) {
+   if (typeof subject !== 'number' && typeof subject !== 'string') {
       return false;
    }
-   return subject.toLowerCase()
-      .split('').filter(element => element !== ' ')
+   return subject.toString()
+      .toLowerCase()
+      .replace(/\s/g, '')
+      .split('')
       .every((element, index, arr) => element === arr[arr.length - index - 1]);
 }
 
-const subject1 = 'кот';
+const subject1 = 131;
 const subject2 = 'потоп';
 const subject3 = '12311';
 const subject4 = '345543';
