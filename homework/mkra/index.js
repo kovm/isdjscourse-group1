@@ -1,4 +1,4 @@
-module.exports.createSeaBattle = createSeaBattle();
+module.exports.createSeaBattle = createSeaBattle;
 
 function createSeaBattle () {
    const missFire = -1;
