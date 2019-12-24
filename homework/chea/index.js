@@ -23,7 +23,6 @@ function printNumbers () {
 }
 
 function isPolyndrom (str) {
-   str = '' + str;
    const len = str.length;
    if (len === 0) {
       return false;
