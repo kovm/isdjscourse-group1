@@ -1,43 +1,43 @@
-(function(){
-    const submit = document.getElementById('form');
-    submit.addEventListener('submit', function(e){
-        e.preventDefault();
-        let message = document.getElementById('input');
-        if (message.value.length > 0){
-            document.getElementById('message').textContent = message.value;
-            message.value = '';
-        }
-        else{
-            let error = document.querySelector('.error');
-            error.classList.add('show');
-            setTimeout(function(){
-                error.classList.remove('show');
-            }, 2000);
-        }
-    });
+(function () {
+   'use strict';
+   // Task 1
+   console.log('----- Task 1 -----');
+   for (let i = 1; i <= 100; i++) {
+      if (i % 5 === 0 && i % 3 === 0) {
+         console.log('FizzBuzz');
+      } else if (i % 3 === 0) {
+         console.log('Fizz');
+      } else if (i % 5 === 0) {
+         console.log('Buzz');
+      } else {
+         console.log(i);
+      }
+   }
 
-    // Counter
-    let counterValue = 0;
-    const buttons = document.querySelectorAll(".counterBtn");
-    const counter = document.getElementById("counter");
-    buttons.forEach(function(btn) {
-        btn.addEventListener("click", function(event) {
-            const value = event.target;
-            if (value.classList.contains("prevBtn")) {
-                counterValue--;
-            } else if (value.classList.contains("nextBtn")) {
-                counterValue++;
-            }
-            counter.textContent = counterValue;
-            // change color
-            if (counterValue === 0) {
-                counter.style.color = "#333333";
-            } else if (counterValue < 0) {
-                counter.style.color = "#F6511D";
-            } else if (counterValue > 0) {
-                counter.style.color = "#7fb800";
-            }
-        });
-    });
+   // Task 2. Palindrome
+   console.log('----- Task 2 -----');
+   function palindromeChecker (val) {
+      const _val = typeof val;
+      if (_val !== 'number' && _val !== 'string') {
+         console.log('The value isn\'t a string or a number');
+         return;
+      } else if (!val) {
+         console.log('Please, enter a valid value');
+         return;
+      }
+      const arr = val.toString().toLowerCase().split('');
+      for (let n = 1; n <= Math.floor(arr.length / 2); n++) {
+         if (arr[n - 1] !== arr[arr.length - n]) {
+            console.log(`${val} is not a palindrome`);
+            return;
+         }
+      }
+      console.log(`${val} is a palindrome`);
+   }
+
+   palindromeChecker();
+   palindromeChecker(null);
+   palindromeChecker([1, 2, 1]);
+   palindromeChecker('Aa');
+   palindromeChecker(1);
 })();
-
