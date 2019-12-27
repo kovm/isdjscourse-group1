@@ -1,42 +1,87 @@
-function FizzBuzz () {
-   const numbers = [];
-   for (let n = 1; n <= 100; n++) {
-      switch (0) {
-      case (n % 3 || n % 5):
-         numbers.push('FizzBuzz');
-         break;
-      case (n % 3):
-         numbers.push('Fizz');
-         break;
-      case (n % 5):
-         numbers.push('Buzz');
-         break;
-      default:
-         numbers.push(n);
+function createSeaBattle () {
+   const battleFields = [
+      [1, 1, 0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0, 1, 1, 1]
+   ];
+
+   let result;
+
+   function hit (y, x) {
+      battleFields[y][x] = 2;
+   }
+
+   function check (y, x) {
+      battleFields[y][x] = 3;
+   }
+
+   function coordY (y) {
+      function coordX (x) {
+         if (typeof x !== typeof y !== 'number' && y > battleFields.length - 1 && x > battleFields[0].length) {
+            result = false;
+         }
+         const target = battleFields[y][x];
+         switch (target) {
+         case (0):
+            check(y, x);
+            result = -1;
+            break;
+         case (3):
+         case (2):
+            result = 'checked';
+            break;
+         case (1): {
+            const start = (n) => (n === 0) ? n : n - 1;
+            const end = (n) => (n === battleFields.length - 1) ? n : n + 1;
+            const arround = [];
+            for (let a = start(y); a <= end(y); a++) {
+               for (let b = start(x); b <= end(x); b++) {
+                  if (a === y && b === x) {
+                     continue;
+                  }
+                  arround.push(battleFields[a][b]);
+               }
+            }
+            const empty = arround.includes(0);
+            const cheked = arround.includes(3);
+            const hited = arround.includes(2);
+            const intact = arround.includes(1);
+            if (intact) {
+               result = 0;
+               hit(y, x);
+            } else if (hited) {
+               result = 1;
+               hit(y, x);
+            } else if (empty || cheked) {
+               result = 1;
+               hit(y, x);
+            }
+
+            console.log(`arround = ${arround}`);
+            break;
+         }
+         }
+
+         console.log(result);
+         console.log(battleFields);
+         return result;
       }
+      return coordX;
    }
-   console.log(numbers.join(', '));
+   return coordY;
 }
-FizzBuzz();
+// "Mимо": -1
+// "Ранил":  0,
+// "Убил":    1
 
-function isPolindrome (subject) {
-   if (typeof subject !== 'number' && typeof subject !== 'string') {
-      return false;
-   }
-   return subject.toString()
-      .toLowerCase()
-      .replace(/\s/g, '')
-      .split('')
-      .every((element, index, arr) => element === arr[arr.length - index - 1]);
-}
-
-const subject1 = 131;
-const subject2 = 'потоп';
-const subject3 = '12311';
-const subject4 = '345543';
-const subject5 = 'Аргентина манит негра';
-console.log(isPolindrome(subject1));
-console.log(isPolindrome(subject2));
-console.log(isPolindrome(subject3));
-console.log(isPolindrome(subject4));
-console.log(isPolindrome(subject5));
+const seaBattle = createSeaBattle();
+seaBattle(0)(1);
+seaBattle(0)(0);
+seaBattle(0)(2);
