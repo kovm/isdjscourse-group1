@@ -19,13 +19,15 @@ dividers();
  reverts the second half and finally compares the two halves. */
 
 function palindromeChecker (input) {
-   let inputFirstHalf, inputSecondHalf, inputMiddleIndex;
+   let inputFirstHalf, inputSecondHalf, inputMiddleIndex, secondHalfReverted;
    if (typeof (input) !== 'number' && typeof (input) !== 'string') {
       console.log('Please type number or string.');
+      return false;
    } else {
       input = input.toString().toLowerCase().replace(/\s+/g, '');
       if (input.length <= 1) {
          console.log('Please type more symbols.');
+         return false;
       } else {
          inputMiddleIndex = Math.floor(input.length / 2);
          // Checks if an input length even or odd to make the first half of an input to the correct lengths.
@@ -35,7 +37,7 @@ function palindromeChecker (input) {
             inputFirstHalf = input.slice(0, inputMiddleIndex + 1);
          }
          // Trims and reverts the second half of an input
-         const secondHalfReverted = input => {
+         secondHalfReverted = input => {
             let secondHalf = '';
             for (let i = input.length - 1; i >= inputMiddleIndex; i--) {
                secondHalf += input[i];
@@ -44,7 +46,13 @@ function palindromeChecker (input) {
          };
          inputSecondHalf = secondHalfReverted(input);
 
-         console.log(inputFirstHalf === inputSecondHalf ? 'It is a palindrome' : 'It is not a palindrome');
+         if (inputFirstHalf === inputSecondHalf) {
+            console.log('It is a palindrome');
+            return true;
+         } else {
+            console.log('It is not a palindrome');
+            return false;
+         }
       }
    }
 }
