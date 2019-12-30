@@ -71,36 +71,37 @@ function createSeaBattle (a, b) {
          y: 9
       }
    ];
-   const shotCount = [];
-   const shotX = seaMap[a].id;
+   var shotCount = [];
+   var shotX = (a - 1);
+   console.log(shotX + ' ShotX');
    function shots () {
       shotCount.push(shotX);
-      seaMap[a].shot = true;
+      seaMap[shotX].shot = true;
    }
    console.log(seaMap);
    shots();
    console.log(shotCount, seaMap);
    function shipOne () {
-      if (seaMap[+shotX].ship === seaMap[6].ship || seaMap[+shotX].ship === seaMap[7].ship) {
-         return console.log('Shot!!!');
-      } else {
-         return console.log('NO ship crashed');
+      if (seaMap[6].shot === true && seaMap[7].shot === true) {
+         return console.log('Killed !!!');
+      } else if ((seaMap[6].shot === true && seaMap[7].shot === false) || (seaMap[6].shot === false && seaMap[7].shot === true)) {
+         return console.log('Wound 2 double deck ship!!!');
       }
    }
-   if (seaMap[a].ship === true) {
-      return shipOne();
+
+   function shipTwo () {
+      if (seaMap[3].shot === true) {
+         return console.log('Killed single deck ship!!!');
+      }
+   }
+   if (seaMap[a - 1].ship === true) {
+      return shipOne() + shipTwo();
    } else {
       console.log('U R miss!!!');
    }
-   function shipTwo () {
-      if (seaMap[3].shot === true) {
-         return console.log('Shot!!!');
-      }
-   }
-   shipTwo();
 
-   console.log(seaMap, shotX, seaMap.length, seaMap[a].shot);
+   console.log(seaMap, shotX, seaMap.length, seaMap[shotX].shot);
 };
 createSeaBattle(3);
 createSeaBattle(6);
-createSeaBattle(0);
+createSeaBattle(1);
