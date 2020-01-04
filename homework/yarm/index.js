@@ -1,4 +1,22 @@
 function createSeaBattle (a, b) {
+   try {
+      if (a === '') {
+         throw new Error('an exception');
+      }
+      if (isNaN(a)) {
+         throw new Error('an exception');
+      }
+      a = Number(a);
+      if (a < 0) {
+         throw new Error('an exception');
+      }
+      if (a > 10) {
+         throw new Error('an exception');
+      }
+   } catch (e) {
+      return e;
+   }
+
    var seaMap = [
       {
          id: '01',
@@ -102,6 +120,5 @@ function createSeaBattle (a, b) {
 
    console.log(seaMap, shotX, seaMap.length, seaMap[shotX].shot);
 };
+
 createSeaBattle(3);
-createSeaBattle(6);
-createSeaBattle(1);
