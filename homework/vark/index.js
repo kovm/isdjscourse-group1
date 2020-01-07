@@ -25,3 +25,4 @@ const isPali = (input) => {
 };
 
 isPali(123321);
+isPali('potop');
