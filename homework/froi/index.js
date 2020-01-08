@@ -32,7 +32,6 @@ function createSeaBattle () {
          } else {
             result = true;
          }
-
       }
       return result;
    }
@@ -102,6 +101,5 @@ seaBattle(0)(0);
 seaBattle(0)(1);
 seaBattle(9)(9);
 seaBattle(9)(8);
-
 seaBattle(4)(4);
 seaBattle(4)(4);
