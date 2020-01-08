@@ -1,15 +1,17 @@
+module.exports.createSeaBattle = createSeaBattle;
+
 function createSeaBattle () {
    const battleFields = [
-      [1, 1, 0, 0, 0, 0, 0, 0, 0, 0],
+      [1, 1, 0, 0, 0, 0, 0, 0, 1, 0],
       [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-      [0, 0, 0, 0, 0, 0, 0, 1, 1, 1]
+      [0, 0, 0, 0, 0, 0, 1, 0, 1, 0],
+      [0, 0, 0, 0, 0, 0, 0, 0, 1, 0],
+      [0, 0, 0, 0, 1, 0, 0, 0, 0, 0],
+      [0, 1, 0, 0, 1, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 1, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 1, 0, 1, 0, 1, 0],
+      [0, 0, 0, 0, 0, 0, 1, 0, 0, 0],
+      [0, 0, 1, 1, 1, 0, 1, 0, 1, 1]
    ];
 
    let result;
@@ -21,11 +23,30 @@ function createSeaBattle () {
    function check (y, x) {
       battleFields[y][x] = 3;
    }
-
-   function coordY (y) {
-      function coordX (x) {
-         if (typeof x !== typeof y !== 'number' && y > battleFields.length - 1 && x > battleFields[0].length) {
+   function endGame () {
+      let result;
+      for (const y of battleFields) {
+         if (y.some(elem => elem === 1)) {
             result = false;
+            break;
+         } else {
+            result = true;
+         }
+
+      }
+      return result;
+   }
+
+   return (y) => {
+      return (x) => {
+         if (typeof x !== 'number' || typeof y !== 'number') {
+            throw new Error('You have enter wrong value, enter number');
+         }
+         if (endGame()) {
+            throw new Error('Game over, no ships was left');
+         }
+         if (y > battleFields.length - 1 || x > battleFields[0].length - 1 || y < 0 || x < 0) {
+            throw new Error('You have enter wrong number, enter 0-9');
          }
          const target = battleFields[y][x];
          switch (target) {
@@ -35,8 +56,7 @@ function createSeaBattle () {
             break;
          case (3):
          case (2):
-            result = 'checked';
-            break;
+            throw new Error('You have already shooted in this cell');
          case (1): {
             const start = (n) => (n === 0) ? n : n - 1;
             const end = (n) => (n === battleFields.length - 1) ? n : n + 1;
@@ -64,24 +84,24 @@ function createSeaBattle () {
                hit(y, x);
             }
 
-            console.log(`arround = ${arround}`);
             break;
          }
          }
 
          console.log(result);
-         console.log(battleFields);
          return result;
-      }
-      return coordX;
-   }
-   return coordY;
+      };
+   };
 }
 // "Mимо": -1
-// "Ранил":  0,
-// "Убил":    1
+// "Ранил": 0,
+// "Убил": 1
 
 const seaBattle = createSeaBattle();
-seaBattle(0)(1);
 seaBattle(0)(0);
-seaBattle(0)(2);
+seaBattle(0)(1);
+seaBattle(9)(9);
+seaBattle(9)(8);
+
+seaBattle(4)(4);
+seaBattle(4)(4);
