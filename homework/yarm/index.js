@@ -1,13 +1,13 @@
 function createSeaBattle (a, b) {
    try {
-      if (a === '') {
+      if ((a || b) === '') {
          throw new Error('an exception');
       }
       if (isNaN(a)) {
          throw new Error('an exception');
       }
       a = Number(a);
-      if (a < 0) {
+      if (a < 1) {
          throw new Error('an exception');
       }
       if (a > 10) {
@@ -16,89 +16,88 @@ function createSeaBattle (a, b) {
    } catch (e) {
       return e;
    }
-
-   var seaMap = [
+   const seaMap = [
       {
          id: '01',
          ship: false,
          shot: false,
-         x: 0,
-         y: 0
+         x1: false,
+         y1: false
       },
       {
          id: '02',
          ship: false,
          shot: false,
-         x: 0,
-         y: 1
+         x: false,
+         y: false
       },
       {
          id: '03',
          ship: false,
          shot: false,
-         x: 0,
-         y: 2
+         x: false,
+         y: false
       },
       {
          id: '04',
          ship: true,
          shot: false,
-         x: 0,
-         y: 3
+         x: true,
+         y: true
       },
       {
          id: '05',
          ship: false,
          shot: false,
-         x: 0,
-         y: 4
+         x: false,
+         y: false
       },
       {
          id: '06',
          ship: false,
          shot: false,
-         x: 0,
-         y: 5
+         x: false,
+         y: false
       },
       {
          id: '07',
          ship: true,
          shot: false,
-         x: 0,
-         y: 6
+         x: false,
+         y: false
       },
       {
          id: '08',
          ship: true,
          shot: false,
-         x: 0,
-         y: 7
+         x: false,
+         y: false
       },
       {
          id: '09',
          ship: false,
          shot: false,
-         x: 0,
-         y: 8
+         x: false,
+         y: false
       },
       {
          id: '10',
          ship: false,
          shot: false,
-         x: 0,
-         y: 9
+         x: false,
+         y: false
       }
    ];
-   var shotCount = [];
+
    var shotX = (a - 1);
    console.log(shotX + ' ShotX');
    function shots () {
-      shotCount.push(shotX);
       seaMap[shotX].shot = true;
    }
    console.log(seaMap);
+
    shots();
-   console.log(shotCount, seaMap);
+   console.log(seaMap);
    function shipOne () {
       if (seaMap[6].shot === true && seaMap[7].shot === true) {
          return console.log('Killed !!!');
@@ -108,17 +107,21 @@ function createSeaBattle (a, b) {
    }
 
    function shipTwo () {
-      if (seaMap[3].shot === true) {
+      if (seaMap[3].x === true) {
          return console.log('Killed single deck ship!!!');
       }
-   }
-   if (seaMap[a - 1].ship === true) {
-      return shipOne() + shipTwo();
-   } else {
-      console.log('U R miss!!!');
-   }
+   }; console.log(seaMap, shotX, seaMap.length, seaMap[shotX].shot);
 
-   console.log(seaMap, shotX, seaMap.length, seaMap[shotX].shot);
+   function shot () {
+      if (seaMap[a - 1].ship === true) {
+         return shipOne() + shipTwo();
+      } else {
+         return console.log('U R miss!!!');
+      }
+   };
+   shot();
 };
 
 createSeaBattle(3);
+createSeaBattle(4);
+createSeaBattle(6);
