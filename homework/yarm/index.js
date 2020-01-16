@@ -1,22 +1,22 @@
-function createSeaBattle (b) {
-   try {
-      if (b === '') {
-         throw new Error('an exception');
+function createSeaBattle (a) {
+   return (b) => {
+      try {
+         if (b === '') {
+            throw new Error('an exception');
+         }
+         if (isNaN(b)) {
+            throw new Error('an exception');
+         }
+         b = Number(b);
+         if (b < 1) {
+            throw new Error('an exception');
+         }
+         if (b > 10) {
+            throw new Error('an exception');
+         }
+      } catch (e) {
+         return e;
       }
-      if (isNaN(b)) {
-         throw new Error('an exception');
-      }
-      b = Number(b);
-      if (b < 1) {
-         throw new Error('an exception');
-      }
-      if (b > 10) {
-         throw new Error('an exception');
-      }
-   } catch (e) {
-      return e;
-   }
-   return (a) => {
       try {
          if (a === '') {
             throw new Error('an exception');
@@ -39,78 +39,80 @@ function createSeaBattle (b) {
             id: '01',
             ship: false,
             shot: false,
-            x: false,
-            y: false
+            x: { ship: false, shot: false },
+            y: { ship: false, shot: false }
          },
          {
             id: '02',
             ship: false,
             shot: false,
-            x: false,
-            y: false
+            x: { ship: false, shot: false },
+            y: { ship: false, shot: false }
          },
          {
             id: '03',
             ship: false,
             shot: false,
-            x: false,
-            y: false
+            x: { ship: false, shot: false },
+            y: { ship: false, shot: false }
          },
          {
             id: '04',
             ship: true,
             shot: false,
-            x: true,
-            y: true
+            x: { ship: true, shot: false },
+            y: { ship: false, shot: false }
          },
          {
             id: '05',
             ship: false,
             shot: false,
-            x: false,
-            y: false
+            x: { ship: false, shot: false },
+            y: { ship: false, shot: false }
          },
          {
             id: '06',
             ship: false,
             shot: false,
-            x: false,
-            y: false
+            x: { ship: false, shot: false },
+            y: { ship: true, shot: false }
          },
          {
             id: '07',
             ship: true,
             shot: false,
-            x: false,
-            y: false
+            x: { ship: false, shot: false },
+            y: { ship: false, shot: false }
          },
          {
             id: '08',
             ship: true,
             shot: false,
-            x: false,
-            y: false
+            x: { ship: false, shot: false },
+            y: { ship: false, shot: false }
          },
          {
             id: '09',
             ship: false,
             shot: false,
-            x: false,
-            y: false
+            x: { ship: false, shot: false },
+            y: { ship: false, shot: false }
          },
          {
             id: '10',
             ship: false,
             shot: false,
-            x: false,
-            y: false
+            x: { ship: false, shot: false },
+            y: { ship: false, shot: false }
          }
       ];
 
-      var shotX = (a - 1);
+      const shotX = (a - 1);
+      const shotY = (b - 1);
       console.log(shotX + ' ShotX');
       function shots () {
-         seaMap[shotX].shot = true;
+         seaMap[shotX].x.shot = true;
+         seaMap[shotY].y.shot = true;
       }
       console.log(seaMap);
 
@@ -125,13 +127,13 @@ function createSeaBattle (b) {
       }
 
       function shipTwo () {
-         if (seaMap[3].x === true) {
+         if (seaMap[3].x.ship === true && seaMap[5].y.ship === true) {
             return console.log('Killed single deck ship!!!');
          }
       }; console.log(seaMap, shotX, seaMap.length, seaMap[shotX].shot);
 
       function shot () {
-         if (seaMap[a - 1].ship === true) {
+         if (seaMap[a - 1].x.ship === true && seaMap[b - 1].y.ship === true) {
             return shipOne() + shipTwo();
          } else {
             return console.log('U R miss!!!');
