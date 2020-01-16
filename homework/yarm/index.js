@@ -67,8 +67,8 @@ function createSeaBattle (a) {
             id: '05',
             ship: false,
             shot: false,
-            x: { ship: false, shot: false },
-            y: { ship: false, shot: false }
+            x: { ship: false, shot: true },
+            y: { ship: false, shot: true }
          },
          {
             id: '06',
@@ -110,6 +110,13 @@ function createSeaBattle (a) {
       const shotX = (a - 1);
       const shotY = (b - 1);
       console.log(shotX + ' ShotX');
+      try {
+         if ((seaMap[shotX].x.shot === true) && seaMap[shotY].y.shot === true) {
+            throw new Error('an exception');
+         }
+      } catch (e) {
+         return e;
+      }
       function shots () {
          seaMap[shotX].x.shot = true;
          seaMap[shotY].y.shot = true;
@@ -118,6 +125,7 @@ function createSeaBattle (a) {
 
       shots();
       console.log(seaMap);
+
       function shipOne () {
          if (seaMap[6].shot === true && seaMap[7].shot === true) {
             return console.log('Killed !!!');
@@ -146,3 +154,4 @@ function createSeaBattle (a) {
 createSeaBattle(3)(4);
 createSeaBattle(4)(6);
 createSeaBattle(6)(7);
+createSeaBattle(5)(5);
