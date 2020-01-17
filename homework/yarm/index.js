@@ -37,17 +37,17 @@ function createSeaBattle (a) {
       const seaMap = [
          {
             id: '00',
-            x: { ship: false, shot: false },
+            x: { ship: false, shot: true },
             y: { ship: false, shot: false }
          },
          {
             id: '01',
-            x: { ship: false, shot: false },
+            x: { ship: false, shot: true },
             y: { ship: false, shot: false }
          },
          {
             id: '02',
-            x: { ship: false, shot: false },
+            x: { ship: false, shot: true },
             y: { ship: false, shot: false }
          },
          {
@@ -62,7 +62,7 @@ function createSeaBattle (a) {
          },
          {
             id: '05',
-            x: { ship: false, shot: false },
+            x: { ship: false, shot: true },
             y: { ship: false, shot: false }
          },
          {
@@ -77,12 +77,12 @@ function createSeaBattle (a) {
          },
          {
             id: '08',
-            x: { ship: false, shot: false },
+            x: { ship: false, shot: true },
             y: { ship: false, shot: false }
          },
          {
             id: '09',
-            x: { ship: false, shot: false },
+            x: { ship: false, shot: true },
             y: { ship: false, shot: false }
          }
       ];
@@ -94,11 +94,11 @@ function createSeaBattle (a) {
       console.log(shotOver);
 
       try {
-         if (seaMap[a].x.shot === true) {
-            throw new Error('an exception U shot allready');
-         }
          if (shotOver.length === 0) {
             throw new Error('an exception NO MORE SHOTS - Game Over');
+         }
+         if (seaMap[a].x.shot === true) {
+            throw new Error('an exception U shot allready');
          }
       } catch (e) {
          return e;
@@ -107,15 +107,13 @@ function createSeaBattle (a) {
          seaMap[a].x.shot = true;
          seaMap[b].y.shot = true;
       }
-      console.log(seaMap);
 
       shots();
-      console.log(seaMap);
 
       function shipOne () {
          if (seaMap[6].x.shot === true && seaMap[7].x.shot === true) {
             return console.log('Killed !!!');
-         } else if ((seaMap[6].x.shot === true && seaMap[7].shot === false) || (seaMap[6].x.shot === false && seaMap[7].shot === true)) {
+         } else if ((seaMap[6].x.shot === true && seaMap[7].x.shot === false) || (seaMap[6].x.shot === false && seaMap[7].x.shot === true)) {
             return console.log('Wound 2 double deck ship!!!');
          }
       }
@@ -127,8 +125,10 @@ function createSeaBattle (a) {
       }; console.log(seaMap, seaMap.length, seaMap[a].shot);
 
       function shot () {
-         if (seaMap[a].x.ship === true) {
-            return shipOne() + shipTwo();
+         if (a === 3) {
+            shipTwo();
+         } else if (a === 6 || a === 7) {
+            shipOne();
          } else {
             return console.log('U R miss!!!');
          }
