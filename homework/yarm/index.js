@@ -11,7 +11,7 @@ function createSeaBattle (a) {
          if (b < 1) {
             throw new Error('an exception');
          }
-         if (b > 10) {
+         if (b > 1) {
             throw new Error('an exception');
          }
       } catch (e) {
@@ -107,12 +107,21 @@ function createSeaBattle (a) {
          }
       ];
 
+      const shotOver = seaMap.filter(gameOver);
+      function gameOver (value) {
+         return (value.x.shot !== true);
+      }
+      console.log(shotOver);
+
       const shotX = (a - 1);
       const shotY = (b - 1);
       console.log(shotX + ' ShotX');
       try {
          if ((seaMap[shotX].x.shot === true) && seaMap[shotY].y.shot === true) {
-            throw new Error('an exception');
+            throw new Error('an exception U shot allready');
+         }
+         if (shotOver.length === 0) {
+            throw new Error('an exception NO MORE SHOTS - Game Over');
          }
       } catch (e) {
          return e;
