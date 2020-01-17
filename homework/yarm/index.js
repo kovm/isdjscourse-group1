@@ -2,106 +2,86 @@ function createSeaBattle (a) {
    return (b) => {
       try {
          if (b === '') {
-            throw new Error('an exception');
+            throw new Error('an exception Empty string');
          }
          if (isNaN(b)) {
-            throw new Error('an exception');
+            throw new Error('an exception Not a Number');
          }
          b = Number(b);
-         if (b < 1) {
-            throw new Error('an exception');
+         if (b < 0) {
+            throw new Error('an exception less then 0');
          }
-         if (b > 1) {
-            throw new Error('an exception');
+         if (b > 0) {
+            throw new Error('an exception bigger then 0');
          }
       } catch (e) {
          return e;
       }
       try {
          if (a === '') {
-            throw new Error('an exception');
+            throw new Error('an exception Empty string');
          }
          if (isNaN(a)) {
-            throw new Error('an exception');
+            throw new Error('an exception not a number');
          }
          a = Number(a);
-         if (a < 1) {
-            throw new Error('an exception');
+         if (a < 0) {
+            throw new Error('an exception less then 0');
          }
-         if (a > 10) {
-            throw new Error('an exception');
+         if (a > 9) {
+            throw new Error('an exception bigger then 9');
          }
       } catch (e) {
          return e;
       }
       const seaMap = [
          {
+            id: '00',
+            x: { ship: false, shot: false },
+            y: { ship: false, shot: false }
+         },
+         {
             id: '01',
-            ship: false,
-            shot: false,
             x: { ship: false, shot: false },
             y: { ship: false, shot: false }
          },
          {
             id: '02',
-            ship: false,
-            shot: false,
             x: { ship: false, shot: false },
             y: { ship: false, shot: false }
          },
          {
             id: '03',
-            ship: false,
-            shot: false,
-            x: { ship: false, shot: false },
-            y: { ship: false, shot: false }
-         },
-         {
-            id: '04',
-            ship: true,
-            shot: false,
             x: { ship: true, shot: false },
             y: { ship: false, shot: false }
          },
          {
-            id: '05',
-            ship: false,
-            shot: false,
+            id: '04',
             x: { ship: false, shot: true },
             y: { ship: false, shot: true }
          },
          {
-            id: '06',
-            ship: false,
-            shot: false,
-            x: { ship: false, shot: false },
-            y: { ship: true, shot: false }
-         },
-         {
-            id: '07',
-            ship: true,
-            shot: false,
+            id: '05',
             x: { ship: false, shot: false },
             y: { ship: false, shot: false }
          },
          {
+            id: '06',
+            x: { ship: true, shot: false },
+            y: { ship: false, shot: false }
+         },
+         {
+            id: '07',
+            x: { ship: true, shot: false },
+            y: { ship: false, shot: false }
+         },
+         {
             id: '08',
-            ship: true,
-            shot: false,
             x: { ship: false, shot: false },
             y: { ship: false, shot: false }
          },
          {
             id: '09',
-            ship: false,
-            shot: false,
-            x: { ship: false, shot: false },
-            y: { ship: false, shot: false }
-         },
-         {
-            id: '10',
-            ship: false,
-            shot: false,
             x: { ship: false, shot: false },
             y: { ship: false, shot: false }
          }
@@ -113,11 +93,8 @@ function createSeaBattle (a) {
       }
       console.log(shotOver);
 
-      const shotX = (a - 1);
-      const shotY = (b - 1);
-      console.log(shotX + ' ShotX');
       try {
-         if ((seaMap[shotX].x.shot === true) && seaMap[shotY].y.shot === true) {
+         if (seaMap[a].x.shot === true) {
             throw new Error('an exception U shot allready');
          }
          if (shotOver.length === 0) {
@@ -127,8 +104,8 @@ function createSeaBattle (a) {
          return e;
       }
       function shots () {
-         seaMap[shotX].x.shot = true;
-         seaMap[shotY].y.shot = true;
+         seaMap[a].x.shot = true;
+         seaMap[b].y.shot = true;
       }
       console.log(seaMap);
 
@@ -136,21 +113,21 @@ function createSeaBattle (a) {
       console.log(seaMap);
 
       function shipOne () {
-         if (seaMap[6].shot === true && seaMap[7].shot === true) {
+         if (seaMap[6].x.shot === true && seaMap[7].x.shot === true) {
             return console.log('Killed !!!');
-         } else if ((seaMap[6].shot === true && seaMap[7].shot === false) || (seaMap[6].shot === false && seaMap[7].shot === true)) {
+         } else if ((seaMap[6].x.shot === true && seaMap[7].shot === false) || (seaMap[6].x.shot === false && seaMap[7].shot === true)) {
             return console.log('Wound 2 double deck ship!!!');
          }
       }
 
       function shipTwo () {
-         if (seaMap[3].x.ship === true && seaMap[5].y.ship === true) {
+         if (seaMap[3].x.shot === true) {
             return console.log('Killed single deck ship!!!');
          }
-      }; console.log(seaMap, shotX, seaMap.length, seaMap[shotX].shot);
+      }; console.log(seaMap, seaMap.length, seaMap[a].shot);
 
       function shot () {
-         if (seaMap[a - 1].x.ship === true && seaMap[b - 1].y.ship === true) {
+         if (seaMap[a].x.ship === true) {
             return shipOne() + shipTwo();
          } else {
             return console.log('U R miss!!!');
@@ -160,7 +137,7 @@ function createSeaBattle (a) {
    };
 };
 
-createSeaBattle(3)(4);
-createSeaBattle(4)(6);
-createSeaBattle(6)(7);
-createSeaBattle(5)(5);
+createSeaBattle(3)(0);
+createSeaBattle(4)(-15);
+createSeaBattle(6)(0);
+createSeaBattle(5)(0);
