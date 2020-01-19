@@ -1,3 +1,4 @@
+module.exports.createSeaBattle = createSeaBattle;
 function createSeaBattle (a) {
    return (b) => {
       try {
