@@ -1,4 +1,4 @@
-module.exports.createSeaBattle = createSeaBattle;
+module.exports = createSeaBattle;
 
 function createSeaBattle () {
    const battleFields = [
@@ -87,7 +87,7 @@ function createSeaBattle () {
          }
          }
 
-         console.log(result);
+         // console.log(result);
          return result;
       };
    };
@@ -96,10 +96,5 @@ function createSeaBattle () {
 // "Ранил": 0,
 // "Убил": 1
 
-const seaBattle = createSeaBattle();
-seaBattle(0)(0);
-seaBattle(0)(1);
-seaBattle(9)(9);
-seaBattle(9)(8);
-seaBattle(4)(4);
-seaBattle(4)(4);
+// const seaBattle = createSeaBattle();
+// seaBattle(0)(0);
