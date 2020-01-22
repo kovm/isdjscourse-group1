@@ -132,4 +132,3 @@ function validate (currentX, currentY, array) {
       }
    }
 }
-let seaBattle = createSeaBattle();
