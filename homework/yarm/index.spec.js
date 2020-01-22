@@ -1,2 +1,5 @@
-const createSeaBattle = require('./index.js');
-const seaBattle = createSeaBattle();
+createSeaBattle = require('./index.js');
+let seaBattle = createSeaBattle();
+test('kill 1deck ship', () => {
+   expect(seaBattle(3)(0)).toBe(1);
+});
