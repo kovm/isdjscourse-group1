@@ -1,4 +1,4 @@
-module.exports.createSeaBattle = createSeaBattle;
+
 function createSeaBattle (a) {
    return (b) => {
       try {
@@ -137,8 +137,4 @@ function createSeaBattle (a) {
       shot();
    };
 };
-
-createSeaBattle(3)(0);
-createSeaBattle(4)(-15);
-createSeaBattle(6)(0);
-createSeaBattle(5)(0);
+module.exports = createSeaBattle;
