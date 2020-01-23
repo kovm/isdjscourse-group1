@@ -1,12 +1,28 @@
 let seaBattle = require('./index');
 seaBattle = seaBattle.createSeaBattle();
 
-test('First function return function', () => {
+test('First function returns a function', () => {
    expect(typeof (seaBattle())).toBe('function');
 });
 
-test('Second function return number', () => {
+test('Second function returns a number', () => {
    expect(typeof (seaBattle(1)(1))).toBe('number');
+});
+
+test('Coordinate "x" and "y" must be between range from 0 to 9', () => {
+   expect(() => seaBattle(22)(-3).toTrow());
+});
+
+test('Second function returns number between range from -1 to 1', () => {
+   expect(seaBattle(0)(2)).betweenRange(-1, 1);
+});
+
+test('Function returns error if you shoot in cell twice', () => {
+   expect(() => seaBattle(2)(2).toTrow());
+});
+
+test('Parameters of functions must be a numbers', () => {
+   expect(() => seaBattle('a')().toTrow());
 });
 
 expect.extend({
@@ -28,12 +44,4 @@ expect.extend({
          };
       }
    }
-});
-
-test('Function return number between', () => {
-   expect(seaBattle(2)(2)).betweenRange(-1, 1);
-});
-
-test('Validate', () => {
-   expect(seaBattle('a')()).toBe(Error);
 });
