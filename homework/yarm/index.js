@@ -3,7 +3,7 @@ function createSeaBattle () {
    const seaMap = [
       {
          id: '00',
-         x: { ship: false, shot: true },
+         x: { ship: false, shot: false },
          y: { ship: false, shot: false }
       },
       {
@@ -56,56 +56,44 @@ function createSeaBattle () {
    return (a) => {
       return (b) => {
          try {
-            if (b === '') {
+            if (b === '' || a === '') {
                throw new Error('an exception Empty string');
             }
-            if (isNaN(b)) {
+            if (isNaN(b) || isNaN(a)) {
                throw new Error('an exception Not a Number');
             }
             b = Number(b);
-            if (b < 0) {
+            a = Number(a);
+            if (b < 0 || a < 0) {
                throw new Error('an exception less then 0');
             }
             if (b > 0) {
                throw new Error('an exception bigger then 0');
             }
-            if (a === '') {
-               throw new Error('an exception Empty string');
-            }
-            if (isNaN(a)) {
-               throw new Error('an exception not a number');
-            }
-            a = Number(a);
-            if (a < 0) {
-               throw new Error('an exception less then 0');
-            }
             if (a > 9) {
                throw new Error('an exception bigger then 9');
             }
-         } catch (e) {
-            return e + console.log(e);
-         }
-         seaMap[a].x.shot = true;
-         seaMap[b].y.shot = true;
-
-         function shotOver () {
-            seaMap.filter(gameOver);
-            function gameOver (value) {
-               return (value.x.shot !== true);
-            }
-         }
-         shotOver();
-         try {
-            if (shotOver.length === 0) {
-               throw new Error('an exception NO MORE SHOTS - Game Over');
-            }
             if (seaMap[a].x.shot === true) {
-               throw new Error('an exception U shot allready');
+               throw new Error('an exception U Shoot already');
             }
          } catch (e) {
             return e;
          }
-
+         let shotCount = [];
+         seaMap[a].x.shot = true;
+         seaMap[b].y.shot = true;
+         shotCount = seaMap.filter(gameOver);
+         function gameOver (value) {
+            return (value !== true);
+         };
+         gameOver();
+         try {
+            if (shotCount.length === 0) {
+               throw new Error('an exception NO MORE SHOTS - Game Over');
+            }
+         } catch (e) {
+            return e;
+         }
          if (a === 3) {
             if (seaMap[3].x.shot === true) {
                return 1;
@@ -118,7 +106,7 @@ function createSeaBattle () {
             }
          } else {
             return -1;
-         }
+         };
       };
    };
 }
