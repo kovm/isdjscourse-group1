@@ -73,23 +73,20 @@ function createSeaBattle () {
             if (a > 9) {
                throw new Error('an exception bigger then 9');
             }
-            if (seaMap[a].x.shot === true) {
+            /* if (seaMap[a].x.shot === true) {
                throw new Error('an exception U Shoot already');
-            }
+            } */
          } catch (e) {
             return e;
          }
-         let shotCount = [];
+         let shipCount = [];
          seaMap[a].x.shot = true;
          seaMap[b].y.shot = true;
-         shotCount = seaMap.filter(gameOver);
-         function gameOver (value) {
-            return (value !== true);
-         };
-         gameOver();
+         shipCount = seaMap.filter(item => item.x.shot === true && item.x.ship);
+         console.log(shipCount);
          try {
-            if (shotCount.length === 0) {
-               throw new Error('an exception NO MORE SHOTS - Game Over');
+            if (shipCount.length === 3) {
+               throw new Error('an exception NO MORE SHIPS - Game Over');
             }
          } catch (e) {
             return e;
