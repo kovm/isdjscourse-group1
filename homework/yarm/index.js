@@ -56,10 +56,7 @@ function createSeaBattle () {
    return (a) => {
       return (b) => {
          try {
-            if (b === '' || a === '') {
-               throw new Error('an exception Empty string');
-            }
-            if (isNaN(b) || isNaN(a)) {
+            if (isNaN(b) || isNaN(a) || (Number.isSafeInteger(a)) !== true || (Number.isSafeInteger(b)) !== true) {
                throw new Error('an exception Not a Number');
             }
             b = Number(b);
@@ -73,9 +70,9 @@ function createSeaBattle () {
             if (a > 9) {
                throw new Error('an exception bigger then 9');
             }
-            /* if (seaMap[a].x.shot === true) {
+            if (seaMap[a].x.shot === true) {
                throw new Error('an exception U Shoot already');
-            } */
+            }
          } catch (e) {
             return e;
          }
@@ -99,7 +96,7 @@ function createSeaBattle () {
             if (seaMap[6].x.shot === true && seaMap[7].x.shot === true) {
                return 1;
             } else if ((seaMap[6].x.shot === true && seaMap[7].x.shot === false) || (seaMap[6].x.shot === false && seaMap[7].x.shot === true)) {
-               return 1;
+               return 0;
             }
          } else {
             return -1;
