@@ -56,7 +56,7 @@ function createSeaBattle () {
    return (a) => {
       return (b) => {
          try {
-            if (isNaN(b) || isNaN(a) || (Number.isSafeInteger(a)) !== true || (Number.isSafeInteger(b)) !== true) {
+            if ((!Number.isSafeInteger(a)) || (!Number.isSafeInteger(b))) {
                throw new Error('an exception Not a Number');
             }
             b = Number(b);
@@ -70,7 +70,7 @@ function createSeaBattle () {
             if (a > 9) {
                throw new Error('an exception bigger then 9');
             }
-            if (seaMap[a].x.shot === true) {
+            if (seaMap[a].x.shot) {
                throw new Error('an exception U Shoot already');
             }
          } catch (e) {
@@ -79,7 +79,7 @@ function createSeaBattle () {
          let shipCount = [];
          seaMap[a].x.shot = true;
          seaMap[b].y.shot = true;
-         shipCount = seaMap.filter(item => item.x.shot === true && item.x.ship);
+         shipCount = seaMap.filter(item => item.x.shot && item.x.ship);
          console.log(shipCount);
          try {
             if (shipCount.length === 3) {
@@ -89,13 +89,13 @@ function createSeaBattle () {
             return e;
          }
          if (a === 3) {
-            if (seaMap[3].x.shot === true) {
+            if (seaMap[3].x.shot) {
                return 1;
             }
          } else if (a === 6 || a === 7) {
-            if (seaMap[6].x.shot === true && seaMap[7].x.shot === true) {
+            if (seaMap[6].x.shot && seaMap[7].x.shot) {
                return 1;
-            } else if ((seaMap[6].x.shot === true && seaMap[7].x.shot === false) || (seaMap[6].x.shot === false && seaMap[7].x.shot === true)) {
+            } else if ((seaMap[6].x.shot && !seaMap[7].x.shot) || (!seaMap[6].x.shot && seaMap[7].x.shot)) {
                return 0;
             }
          } else {
