@@ -18,43 +18,31 @@ dividers();
  (it has to be string or number), divides an input into the two halves,
  reverts the second half and finally compares the two halves. */
 
-function palindromeChecker (input) {
+ function palindromeChecker (input) {
    let inputFirstHalf, inputSecondHalf, inputMiddleIndex, secondHalfReverted;
    if (typeof (input) !== 'number' && typeof (input) !== 'string') {
-      console.log('Please type number or string.');
-      return false;
-   } else {
-      input = input.toString().toLowerCase().replace(/\s+/g, '');
-      if (input.length <= 1) {
-         console.log('Please type more symbols.');
-         return false;
-      } else {
-         inputMiddleIndex = Math.floor(input.length / 2);
-         // Checks if an input length even or odd to make the first half of an input to the correct lengths.
-         if (input.length % 2 === 0) {
-            inputFirstHalf = input.slice(0, inputMiddleIndex);
-         } else {
-            inputFirstHalf = input.slice(0, inputMiddleIndex + 1);
-         }
-         // Trims and reverts the second half of an input
-         secondHalfReverted = input => {
-            let secondHalf = '';
-            for (let i = input.length - 1; i >= inputMiddleIndex; i--) {
-               secondHalf += input[i];
-            }
-            return secondHalf;
-         };
-         inputSecondHalf = secondHalfReverted(input);
-
-         if (inputFirstHalf === inputSecondHalf) {
-            console.log('It is a palindrome');
-            return true;
-         } else {
-            console.log('It is not a palindrome');
-            return false;
-         }
-      }
+       console.log('Please type number or string.');
+       return false;
    }
+   input = input.toString().toLowerCase().replace(/\s+/g, '');
+   if (input.length <= 1) {
+       console.log('Please type more symbols.');
+       return false;
+   }
+   inputMiddleIndex = Math.floor(input.length / 2) + input.length % 2;;
+   inputFirstHalf = input.slice(0, inputMiddleIndex);
+   secondHalfReverted = input => {
+       let secondHalf = '';
+       for (let i = input.length - 1; i >= inputMiddleIndex - 1; i--) {
+          secondHalf += input[i];
+       }
+       return secondHalf;
+   };
+   inputSecondHalf = secondHalfReverted(input);
+   if (inputFirstHalf === inputSecondHalf) {
+     console.log('It is a palindrome');
+     return true;
+  }
 }
 
 palindromeChecker(undefined);
