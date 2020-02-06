@@ -1,34 +1,61 @@
-const count = 100;
+const seaFieldWithShips = [0, 1, 0, 1, 0, 0, 1, 1, 0, 0];
 
-for (let i = 1; i <= count; i++) {
-   if (i % 5 === 0 && i % 3 === 0) {
-      console.log('FizzBuzz');
-   } else if (i % 5 === 0) {
-      console.log('Buzz');
-   } else if (i % 3 === 0) {
-      console.log('Fizz');
-   } else {
-      console.log(i);
-   }
-}
+const seaFieldWithoutShips = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
 
-function isPolindrome (str) {
-   if (typeof str !== 'string' && typeof str !== 'number') {
-      return console.log('Enter a number or a string more than 3 characters, please!');
-   } else if (!/\w{3,}/.test(str)) {
-      return console.log('Enter a number or a string more than 3 characters, please!');
-   }
-   const someStr = str.toString();
-   let i = 0;
-   let j = someStr.length - 1;
-   for (let l = 0; l <= someStr.length / 2; l++) {
-      if (someStr[i] !== someStr[j]) {
-         return `${someStr} isn't a palindrome!`;
+function gameOver () {
+   const amountOfSettedShips = 3;
+
+   let amountOfKilledShips = 0;
+   for (const item of seaFieldWithoutShips) {
+      if (item === 'killed') {
+         amountOfKilledShips++;
       }
-      i++;
-      j--;
    }
-   return `${someStr} is a palindrome!`;
+
+   if (amountOfSettedShips === amountOfKilledShips) {
+      return true;
+   } else {
+      return false;
+   }
 }
 
-console.log(isPolindrome('1g '));
+function createSeaBattle () {
+   return (x) => {
+      return (y) => {
+         try {
+            if (gameOver()) {
+               throw new Error('Game is over! Ships are over!');
+            } else if (!Number.isInteger(x)) {
+               throw new Error('"x" - is not a number! Enter a number, please!');
+            } else if (x > 9 | x < 0) {
+               throw new Error('"x" - should be from 0 to 9!');
+            } else if (typeof seaFieldWithoutShips[x] === 'string') {
+               throw new Error('You have already shot at these coordinates!');
+            }
+
+            if (seaFieldWithShips[x] === 0) {
+               seaFieldWithoutShips[x] = 'missed';
+               return console.log('-1');
+            } else if (seaFieldWithShips[x - 1] === 0 & seaFieldWithShips[x + 1] === 0) {
+               seaFieldWithoutShips[x] = 'killed';
+               return console.log('1');
+            } else if ((seaFieldWithShips[x - 1] === 0 & seaFieldWithoutShips[x + 1] === 'wounded') |
+               (seaFieldWithShips[x + 1] === 0 & seaFieldWithoutShips[x - 1] === 'wounded')) {
+               seaFieldWithoutShips[x] = 'killed';
+               return console.log('1');
+            } else if (seaFieldWithShips[x - 1] === 1 | seaFieldWithShips[x + 1] === 1) {
+               seaFieldWithoutShips[x] = 'wounded';
+               return console.log('0');
+            } else {
+               console.log('What are you?');
+            }
+         } catch (err) {
+            console.log(err.message);
+         }
+      };
+   };
+}
+
+console.log('index.js is connected!');
+
+exports.createSeaBattle = createSeaBattle;
