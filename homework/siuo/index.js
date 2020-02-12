@@ -11,7 +11,6 @@ function gameOver () {
          amountOfKilledShips++;
       }
    }
-
    if (amountOfSettedShips === amountOfKilledShips) {
       return true;
    } else {

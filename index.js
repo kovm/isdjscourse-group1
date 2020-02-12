@@ -1,1 +1,1 @@
-console.log(`Hello world, group #1`);
+console.log('Hello world, group #1');
