@@ -10,7 +10,6 @@ function createSeaBattle () {
    return (x) => {
       return (y) => {
          validate(x, y, usedCells);
-
          if (checkEndGame(battleField)) {
             throw new Error('Game over');
          } else if (battleField[x][y] === true) {
@@ -79,7 +78,7 @@ function createBattleField (rows, columns) {
    return battleField;
 }
 
-function isShipDestroyed (array, x, y) {
+function isShipDestroyed (array, y, x) {
    let result = true;
    let checkX = true;
    let checkY = true;
@@ -88,16 +87,16 @@ function isShipDestroyed (array, x, y) {
    let rightKey = x + 1;
    let leftKey = x - 1;
 
-   while (array[upperKey][y] !== null && array[bottomKey][y] !== null) {
-      if (array[upperKey][y] === true || array[bottomKey][y] === true) {
+   while (array[upperKey][x] !== null && array[bottomKey][x] !== null) {
+      if (array[upperKey][x] === true || array[bottomKey][x] === true) {
          checkX = false;
       }
       upperKey++;
       bottomKey--;
    }
 
-   while (array[x][leftKey] !== null && array[x][rightKey] !== null) {
-      if (array[x][leftKey] === true || array[x][rightKey] === true) {
+   while (array[y][leftKey] !== null && array[y][rightKey] !== null) {
+      if (array[y][leftKey] === true || array[y][rightKey] === true) {
          checkY = false;
       }
       leftKey--;
@@ -117,6 +116,9 @@ function validate (currentX, currentY, array) {
       throw new Error('You are enter incorrect number (correct = 0-9)');
    }
    if (typeof (currentX) !== 'number' || typeof (currentY) !== 'number') {
+      throw new Error('You are enter incorrect data');
+   }
+   if (isNaN(currentX) || isNaN(currentY)) {
       throw new Error('You are enter incorrect data');
    }
    for (const old of array) {

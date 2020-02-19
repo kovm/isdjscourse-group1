@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+</head>
+<body>
+
+<h2>Seabattle</h2>
+
+<style>
+.row div{
+	display: inline-block;
+}
+
+.cell {
+	border: 1px solid;
+	width: 35px;
+	height: 35px;
+}
+
+.inpNum{
+	width: 30px;
+	height: 20px;
+}
+
+</style>
+
+<div class = "row">
+	<div class = "cell" id = "0"></div>
+	<div class = "cell" id = "1"></div>
+	<div class = "cell" id = "2"></div>
+	<div class = "cell" id = "3"></div>
+	<div class = "cell" id = "4"></div>
+	<div class = "cell" id = "5"></div>
+	<div class = "cell" id = "6"></div>
+	<div class = "cell" id = "7"></div>
+	<div class = "cell" id = "8"></div>
+	<div class = "cell" id = "9"></div>
+</div>
+<div class = "row">
+	<div class = "cell" id = "10"></div>
+	<div class = "cell" id = "11"></div>
+	<div class = "cell" id = "12"></div>
+	<div class = "cell" id = "13"></div>
+	<div class = "cell" id = "14"></div>
+	<div class = "cell" id = "15"></div>
+	<div class = "cell" id = "16"></div>
+	<div class = "cell" id = "17"></div>
+	<div class = "cell" id = "18"></div>
+	<div class = "cell" id = "19"></div>
+</div>
+<div class = "row">
+	<div class = "cell" id = "20"></div>
+	<div class = "cell" id = "21"></div>
+	<div class = "cell" id = "22"></div>
+	<div class = "cell" id = "23"></div>
+	<div class = "cell" id = "24"></div>
+	<div class = "cell" id = "25"></div>
+	<div class = "cell" id = "26"></div>
+	<div class = "cell" id = "27"></div>
+	<div class = "cell" id = "28"></div>
+	<div class = "cell" id = "29"></div>
+</div>
+<div class = "row">
+	<div class = "cell" id = "30"></div>
+	<div class = "cell" id = "31"></div>
+	<div class = "cell" id = "32"></div>
+	<div class = "cell" id = "33"></div>
+	<div class = "cell" id = "34"></div>
+	<div class = "cell" id = "35"></div>
+	<div class = "cell" id = "36"></div>
+	<div class = "cell" id = "37"></div>
+	<div class = "cell" id = "38"></div>
+	<div class = "cell" id = "39"></div>
+</div>
+<div class = "row">
+	<div class = "cell" id = "40"></div>
+	<div class = "cell" id = "41"></div>
+	<div class = "cell" id = "42"></div>
+	<div class = "cell" id = "43"></div>
+	<div class = "cell" id = "44"></div>
+	<div class = "cell" id = "45"></div>
+	<div class = "cell" id = "46"></div>
+	<div class = "cell" id = "47"></div>
+	<div class = "cell" id = "48"></div>
+	<div class = "cell" id = "49"></div>
+</div>
+<div class = "row">
+	<div class = "cell" id = "50"></div>
+	<div class = "cell" id = "51"></div>
+	<div class = "cell" id = "52"></div>
+	<div class = "cell" id = "53"></div>
+	<div class = "cell" id = "54"></div>
+	<div class = "cell" id = "55"></div>
+	<div class = "cell" id = "56"></div>
+	<div class = "cell" id = "57"></div>
+	<div class = "cell" id = "58"></div>
+	<div class = "cell" id = "59"></div>
+</div>
+<div class = "row">
+	<div class = "cell" id = "60"></div>
+	<div class = "cell" id = "61"></div>
+	<div class = "cell" id = "62"></div>
+	<div class = "cell" id = "63"></div>
+	<div class = "cell" id = "64"></div>
+	<div class = "cell" id = "65"></div>
+	<div class = "cell" id = "66"></div>
+	<div class = "cell" id = "67"></div>
+	<div class = "cell" id = "68"></div>
+	<div class = "cell" id = "69"></div>
+</div>
+<div class = "row">
+	<div class = "cell" id = "70"></div>
+	<div class = "cell" id = "71"></div>
+	<div class = "cell" id = "72"></div>
+	<div class = "cell" id = "73"></div>
+	<div class = "cell" id = "74"></div>
+	<div class = "cell" id = "75"></div>
+	<div class = "cell" id = "76"></div>
+	<div class = "cell" id = "77"></div>
+	<div class = "cell" id = "78"></div>
+	<div class = "cell" id = "79"></div>
+</div>
+<div class = "row">
+	<div class = "cell" id = "80"></div>
+	<div class = "cell" id = "81"></div>
+	<div class = "cell" id = "82"></div>
+	<div class = "cell" id = "83"></div>
+	<div class = "cell" id = "84"></div>
+	<div class = "cell" id = "85"></div>
+	<div class = "cell" id = "86"></div>
+	<div class = "cell" id = "87"></div>
+	<div class = "cell" id = "88"></div>
+	<div class = "cell" id = "89"></div>
+</div>
+<div class = "row">
+	<div class = "cell" id = "90"></div>
+	<div class = "cell" id = "91"></div>
+	<div class = "cell" id = "92"></div>
+	<div class = "cell" id = "93"></div>
+	<div class = "cell" id = "94"></div>
+	<div class = "cell" id = "95"></div>
+	<div class = "cell" id = "96"></div>
+	<div class = "cell" id = "97"></div>
+	<div class = "cell" id = "98"></div>
+	<div class = "cell" id = "99"></div>
+</div>
+<br>
+<div id="Results"></div>
+
+<form name="fireForm">
+	<label>Coordinate Y</label>
+	<input class = "inpNum" type="number" id = "Y" min="0" max="9"/>
+	<label>Coordinate X</label>
+	<input class = "inpNum" type="number" id="X" min="0" max="9"/>
+	<br>
+	<button type="submit" id="submit">Send</button>
+	<button type="submit" id="delete">Delete All</button>
+	<button type="submit" id="view">View Shots</button>
+</form>
+
+<script>
+	const sessionId = (new Date()).toISOString();
+
+ 	document.getElementById("submit").addEventListener("click", function (e){
+		let idElement;
+		let Y = document.getElementById("Y").value;
+		let X = document.getElementById("X").value;
+		let data = JSON.stringify({Y: Y, X: X, sessionId: sessionId});
+		let request = new XMLHttpRequest();
+		request.open("POST", "/submit", true);
+		request.setRequestHeader("Content-Type", "application/json");
+		request.send(data);
+		request.addEventListener("load", function(){
+			let receivedResponse = JSON.parse(request.response);
+			Y = parseInt(Y);	
+			X = parseInt(X);			
+			if(Y === 0){
+				idElement = X;
+			} else {
+				idElement = X + Y*10;
+			}
+			if(receivedResponse === -1){
+			document.getElementById(idElement).style.backgroundColor = "red";
+			
+			} else if (receivedResponse === 0 || receivedResponse === 1){
+				document.getElementById(idElement).style.backgroundColor = "green";
+			}
+		});
+		e.preventDefault();
+	});
+
+	document.getElementById("delete").addEventListener("click", function (e){
+		let request = new XMLHttpRequest();
+		request.open("DELETE", "/delete", true);
+		request.send();
+		document.getElementById("Results").innerHTML = '';
+
+
+		e.preventDefault();
+	});
+
+	document.getElementById("view").addEventListener("click", function (e){
+			fetch('/shots', {method: 'GET'}).then(function (shotsResponse) {
+			return shotsResponse.json();
+		}).then(shots => {
+			console.log('res', shots);
+			let shootCoordinate = '';
+			for(let i in shots){
+				shootCoordinate += `Coordinate Y: ${shots[i].y}, 
+				Coordinate X: ${shots[i].x}  <br>`;
+			}
+			document.getElementById("Results").innerHTML = shootCoordinate;
+		});
+		e.preventDefault();
+	});
+
+</script>
+</body>
+</html>
