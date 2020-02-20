@@ -201,10 +201,8 @@
 	});
 
 	document.getElementById("view").addEventListener("click", function (e){
-			fetch('/shots', {method: 'GET'}).then(function (shotsResponse) {
-			return shotsResponse.json();
-		}).then(shots => {
-			console.log('res', shots);
+			fetch('/shots', {method: 'GET'}).then(response => response.json())
+			.then(shots => {
 			let shootCoordinate = '';
 			for(let i in shots){
 				shootCoordinate += `Coordinate Y: ${shots[i].y}, 

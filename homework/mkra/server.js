@@ -3,12 +3,13 @@ const path = require('path');
 const jsonParser = express.json();
 const fullPath = path.join(__dirname, '/test.html');
 const app = express();
-let seaBattle = require('./index');
-seaBattle = seaBattle.createSeaBattle();
+const createSeaBattle = require('./index');
+let seaBattle = null;
 
 const SeaBattleDb = require('./sea-battle.db').gameModel;
 
 app.get('/', function (request, response) {
+   seaBattle = createSeaBattle.createSeaBattle();
    response.sendFile(fullPath);
 });
 
